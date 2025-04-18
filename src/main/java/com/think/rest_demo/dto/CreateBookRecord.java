@@ -1,10 +1,11 @@
 package com.think.rest_demo.dto;
 
-public record CreateBookDto(
+public record CreateBookRecord(
         Long bookid,
         String title,
         String genre,
         String description,
         String price,
-        boolean available
+        boolean available,
+        String vendorId
 ) {}

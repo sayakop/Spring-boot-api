@@ -1,6 +1,6 @@
 package com.think.rest_demo.dto;
 
-public record CreateVendorDto(
+public record CreateVendorRecord(
     
     String vendorId,
     String vendorName,
