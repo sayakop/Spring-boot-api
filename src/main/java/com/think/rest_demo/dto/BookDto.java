@@ -1,11 +1,14 @@
 package com.think.rest_demo.dto;
 
+import com.think.rest_demo.model.Vendor;
+
 public record BookDto(
-    Long bookid,
-    String title,
-    String genre,
+    Long bookid, 
+    String title, 
+    String genre, 
+    String price, 
     String description,
-    String price,
-    boolean available,
-    String vendorId
-) {}
+     boolean available, 
+     Vendor vendor) {
+    
+}

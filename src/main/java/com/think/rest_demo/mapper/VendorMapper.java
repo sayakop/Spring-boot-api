@@ -1,29 +1,30 @@
 package com.think.rest_demo.mapper;
 
 import com.think.rest_demo.dto.VendorDto;
-import com.think.rest_demo.dto.CreateVendorRecord;
 import com.think.rest_demo.model.Vendor;
 
 public class VendorMapper {
 
-    public static Vendor fromCreateDto(CreateVendorRecord dto) {
-        Vendor vendor = new Vendor();
-        vendor.setVendorId(dto.vendorId());
-        vendor.setVendorName(dto.vendorName());
-        vendor.setVendorAddress(dto.vendorAddress());
-        vendor.setVendorPhoneNumber(dto.vendorPhoneNumber());
-        vendor.setVendorAge(dto.vendorAge());
-        return vendor;
-    }
-
-    public static VendorDto toDto(Vendor vendor) {
-        return new VendorDto(
+    public static VendorDto toDto(Vendor vendor)
+    {
+        VendorDto vendorDto = new VendorDto(
             vendor.getVendorId(),
             vendor.getVendorName(),
             vendor.getVendorAddress(),
             vendor.getVendorPhoneNumber(),
-            vendor.getVendorAge()
-        );
+            vendor.getVendorAge() );
+            return vendorDto;
     }
+
+    public static Vendor toEntity(VendorDto vendorDto)
+    {
+        Vendor vendor = new Vendor(vendorDto.vendorId(),
+        vendorDto.vendorName(),
+        vendorDto.vendorAddress(),
+        vendorDto.vendorPhoneNumber(),
+        vendorDto.vendorAge());
+        return vendor;
+    }
+
 
 }

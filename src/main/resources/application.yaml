@@ -12,5 +12,10 @@ spring:
 
   jpa.hibernate.ddl_auto: update
 
+#Login User Details
 
+  security:
+    user:
+      name: sayakUser
+      password: Sayak1
 
