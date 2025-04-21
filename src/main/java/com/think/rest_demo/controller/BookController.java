@@ -34,6 +34,12 @@ public class BookController {
         this.bookService = bookService;
     }
 
+    @GetMapping("/welcome")
+    public ResponseEntity<String> welcomeMessage()
+    {
+        return new ResponseEntity<>("Welcome to the Book Details", HttpStatus.OK);
+    }
+    
     //Get All Books from DB
 
     @GetMapping
