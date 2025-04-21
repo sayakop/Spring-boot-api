@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,6 +44,7 @@ public class BookController {
     //Get All Books from DB
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Book> getAllBooks()  
     {
         return bookService.getAllBooks();
@@ -50,6 +52,7 @@ public class BookController {
 
     // Get a Particular Book from DB
     @GetMapping("{bookid}")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Object> getBook(@PathVariable Long bookid)
     {
         return BookResponseHandler.responseBuilder
@@ -57,12 +60,14 @@ public class BookController {
     }
  
     @PostMapping("")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> addBooks(@RequestBody Book book) {
         bookService.addBooks(book);
         return BookResponseHandler.responseBuilder("Book Added Succesfully", HttpStatus.CREATED, book);
     }
 
     @PutMapping("/{bookid}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> updateBooks(@PathVariable Long bookid,@RequestBody Book book)
     {
         bookService.updateBooks(bookid,book);
@@ -70,6 +75,7 @@ public class BookController {
     }
 
     @PutMapping("/{bookid}/assignvendor")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> assignVendorBook(
         @PathVariable Long bookid,@RequestParam String vendorId) {
 
@@ -91,6 +97,7 @@ public class BookController {
     }
 
     @DeleteMapping("/{bookid}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String>  deleteBook(@PathVariable Long bookid)
     {
         boolean bookIsDeleted = bookService.deleteBook(bookid);

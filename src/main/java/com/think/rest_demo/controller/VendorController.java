@@ -2,6 +2,7 @@ package com.think.rest_demo.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import com.think.rest_demo.model.Vendor;
@@ -23,6 +24,7 @@ public class VendorController
 
     //Get a specific Vendor from Database
     @GetMapping("{vendorId}")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Object> getVendorDetails(@PathVariable("vendorId") String vendorId)
     {
         return VendorResponseHandler.responseBuilder
@@ -32,12 +34,14 @@ public class VendorController
 
     //Get All Vendor Details from Database
     @GetMapping
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<List<Vendor>> getAllVendorDetails()
     {
         return new ResponseEntity<>(vendorService.getAllVendors(),HttpStatus.OK);
     }
 
     @PostMapping("")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> createVendorDetails(@RequestBody Vendor vendor)
     {
         vendorService.createVendor(vendor);
@@ -49,6 +53,7 @@ public class VendorController
     }
 
     @PutMapping("")
+    @PreAuthorize("hasRole('ADMIN')")
     public String updateVendorDetails(@RequestBody Vendor vendor)
     {
         vendorService.updateVendor(vendor);
@@ -57,6 +62,7 @@ public class VendorController
     }
 
     @DeleteMapping("/{vendorId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> deleteVendorDetails(@PathVariable("vendorId") String vendorId)
     {
         boolean isVendorDeleted = vendorService.deleteVendor(vendorId);

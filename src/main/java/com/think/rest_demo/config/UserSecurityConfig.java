@@ -4,6 +4,7 @@ package com.think.rest_demo.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -17,19 +18,23 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class UserSecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService()
     {
         UserDetails userDetailsFirst = User.withUsername("User1")
-        .password(passwordEncoder().encode("Pass1")).build();
+        .password(passwordEncoder().encode("Pass1"))
+        .roles("USER").build();
         
         UserDetails userDetailsSecond = User.withUsername("User2")
-        .password(passwordEncoder().encode("Pass2")).build();
+        .password(passwordEncoder().encode("Pass2"))
+        .roles("USER").build();
 
         UserDetails admin = User.withUsername("Admin")
-        .password(passwordEncoder().encode("Admin1")).build();
+        .password(passwordEncoder().encode("Admin1"))
+        .roles("ADMIN").build();
 
         return new InMemoryUserDetailsManager(userDetailsFirst,userDetailsSecond,admin);
 
