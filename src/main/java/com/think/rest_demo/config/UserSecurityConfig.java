@@ -52,9 +52,11 @@ public class UserSecurityConfig {
         httpSecurity.csrf(csrfCustomizer -> csrfCustomizer.disable());
         httpSecurity.authorizeHttpRequests(request->request.requestMatchers("/books/welcome").permitAll()
         .anyRequest().authenticated());
+        httpSecurity.authorizeHttpRequests(request->request.requestMatchers("/vendor/welcome").permitAll().
+        anyRequest().authenticated());
         httpSecurity.httpBasic(Customizer.withDefaults());
         httpSecurity.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return httpSecurity.build();
-    }
+    }    
 
 }

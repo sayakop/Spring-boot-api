@@ -22,6 +22,12 @@ public class VendorController
         this.vendorService = vendorService;
     }
 
+    @GetMapping("/welcome")
+    public ResponseEntity<String> welcomeMessage()
+    {
+        return new ResponseEntity<>("Welcome to the Vendor Details", HttpStatus.OK);
+    }
+
     //Get a specific Vendor from Database
     @GetMapping("{vendorId}")
     @PreAuthorize("hasRole('USER')")
