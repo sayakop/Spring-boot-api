@@ -50,10 +50,9 @@ public class UserSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception
     {
         httpSecurity.csrf(csrfCustomizer -> csrfCustomizer.disable());
-        httpSecurity.authorizeHttpRequests(request->request.requestMatchers("/books/welcome").permitAll()
+        httpSecurity.authorizeHttpRequests(request->request.requestMatchers
+        ("/vendor/welcome","/books/welcome").permitAll()
         .anyRequest().authenticated());
-        httpSecurity.authorizeHttpRequests(request->request.requestMatchers("/vendor/welcome").permitAll().
-        anyRequest().authenticated());
         httpSecurity.httpBasic(Customizer.withDefaults());
         httpSecurity.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return httpSecurity.build();
