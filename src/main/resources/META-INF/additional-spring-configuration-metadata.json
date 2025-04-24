@@ -1,0 +1,10 @@
+{"properties": [{
+  "name": "dummyService.address",
+  "type": "java.lang.String",
+  "description": "A description for 'dummyService.address'"
+},
+{
+  "name": "dummyService.port",
+  "type": "java.lang.String",
+  "description": "A description for 'dummyService.port'"
+}]}

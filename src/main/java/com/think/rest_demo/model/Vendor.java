@@ -32,7 +32,8 @@ public class Vendor {
     }
 
 
-    public Vendor(String vendorId, String vendorName, String vendorAddress, String vendorPhoneNumber,String vendorAge) {
+    public Vendor
+    (String vendorId, String vendorName, String vendorAddress, String vendorPhoneNumber,String vendorAge) {
         this.vendorId = vendorId;
         this.vendorName = vendorName;
         this.vendorAddress = vendorAddress;
