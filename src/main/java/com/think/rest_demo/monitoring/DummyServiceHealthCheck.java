@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
 
+@Component("dummyServiceHealthCheck")
 public class DummyServiceHealthCheck implements HealthIndicator {
 
 
@@ -29,9 +31,8 @@ public class DummyServiceHealthCheck implements HealthIndicator {
         catch(IOException exception)
         {
             exception.printStackTrace();
+            return Health.down().withDetail("Dummy Service", "Exception: " + exception.getMessage()).build();
         }
-
-        return null;
     }
 
      private boolean isServiceUp() throws IOException {
