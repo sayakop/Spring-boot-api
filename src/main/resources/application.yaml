@@ -21,17 +21,32 @@ spring:
 
 
 
-
+#Actuator
 management:
   endpoints:
     web:
       exposure:
-        include: "health,beans,metrics"
+        include: "*"
       base-path: "/dashboard"
   endpoint:
     health:
       show-details: always
+    shutdown:
+      access: UNRESTRICTED
+
+  info:
+    env:
+      enabled: true    
 
 dummyService:
   port: 8081
   address: 127.0.0.1
+
+server:
+  shutdown: graceful
+
+info:
+  app:
+    name: RestDemoApplication
+    description: Book and Vendor App built by Sayak!!
+    version: 1.0.0
