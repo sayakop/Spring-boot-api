@@ -50,3 +50,8 @@ info:
     name: RestDemoApplication
     description: Book and Vendor App built by Sayak!!
     version: 1.0.0
+
+logging:
+  level:
+    '[com.think.rest_demo.controller]': DEBUG
+    
