@@ -19,6 +19,12 @@ spring:
       name: sayakUser
       password: Sayak1
 
+#Swagger Settings
+
+springdoc:
+  packages-to-scan: com.think.rest_demo
+  paths-to-match: /vendor/**,/books/**
+
 
 
 #Actuator
