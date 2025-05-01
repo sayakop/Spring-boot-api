@@ -10,6 +10,9 @@ import com.think.rest_demo.response.BookResponseHandler;
 import com.think.rest_demo.response.VendorResponseHandler;
 import com.think.rest_demo.service.Vendor.VendorService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
 import java.util.List;
 
 @RestController
@@ -30,6 +33,14 @@ public class VendorController
 
     //Get a specific Vendor from Database
     @GetMapping("{vendorId}")
+    @Operation(
+    summary = "Get Vendor by ID",
+    description = "Provide a vendor ID to retrieve the vendor details",
+    responses = {
+        @ApiResponse(responseCode = "200", description = "Successful operation"),
+        @ApiResponse(responseCode = "404", description = "Vendor not found")
+    }
+)
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Object> getVendorDetails(@PathVariable("vendorId") String vendorId)
     {

@@ -2,6 +2,7 @@ package com.think.rest_demo.model;
 
 
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -12,9 +13,11 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "book details", schema = "vendor")
+@Schema(description = "This table contains all the book details")
 public class Book {
 
    @Id
+   @Schema(description = "This is the Book Id, and it wil be unique always")
     private Long bookid;
     private String title;
     private String genre;

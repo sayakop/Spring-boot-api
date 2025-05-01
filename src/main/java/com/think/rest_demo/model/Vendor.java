@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.CascadeType;
 
 import jakarta.persistence.Entity;
@@ -15,9 +16,11 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="vendor details", schema = "vendor")
+@Schema(description = "This table contains all the vendor details")
 public class Vendor {
 
     @Id
+    @Schema(description = "This is Vendor ID, and it shall be unique.")
     private String vendorId;
     private String vendorName;
     private String vendorAddress;

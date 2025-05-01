@@ -23,6 +23,8 @@ import com.think.rest_demo.model.Book;
 import com.think.rest_demo.response.BookResponseHandler;
 import com.think.rest_demo.service.Book.BookService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.persistence.EntityNotFoundException;
 
 
@@ -56,6 +58,14 @@ public class BookController {
 
     // Get a Particular Book from DB
     @GetMapping("{bookid}")
+     @Operation(
+    summary = "Get Book by ID",
+    description = "Provide a book ID to retrieve the book details",
+    responses = {
+        @ApiResponse(responseCode = "200", description = "Successful operation"),
+        @ApiResponse(responseCode = "404", description = "Book not found")
+    }
+)
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Object> getBook(@PathVariable Long bookid)
     {
