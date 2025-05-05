@@ -50,6 +50,14 @@ public class BookController {
     //Get All Books from DB
 
     @GetMapping
+    @Operation(
+    summary = "Get All Books",
+    description = "This will show all books",
+    responses = {
+        @ApiResponse(responseCode = "200", description = "Successful operation"),
+        @ApiResponse(responseCode = "404", description = "Book not found")
+    }
+)
     @PreAuthorize("hasRole('USER')")
     public List<Book> getAllBooks()  
     {
