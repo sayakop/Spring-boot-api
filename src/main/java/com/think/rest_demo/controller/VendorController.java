@@ -51,6 +51,14 @@ public class VendorController
 
     //Get All Vendor Details from Database
     @GetMapping
+    @Operation(
+    summary = "Get All Vendor",
+    description = "This will show all vendor details",
+    responses = {
+        @ApiResponse(responseCode = "200", description = "Successful operation"),
+        @ApiResponse(responseCode = "404", description = "No vendor details found")
+        }
+    )
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<List<Vendor>> getAllVendorDetails()
     {
@@ -58,6 +66,14 @@ public class VendorController
     }
 
     @PostMapping("")
+    @Operation(
+        summary = "Add A vendor",
+        description = "Input Details to Add Vendor",
+        responses = {
+            @ApiResponse(responseCode = "200", description = "Successful operation"),
+            @ApiResponse(responseCode = "404", description = "Vendor Added Successfully")
+            }
+        )
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> createVendorDetails(@RequestBody Vendor vendor)
     {
@@ -70,6 +86,14 @@ public class VendorController
     }
 
     @PutMapping("")
+    @Operation(
+        summary = "Update A Vendor",
+        description = "Update a vendor based on a particular vendor ID",
+        responses = {
+            @ApiResponse(responseCode = "200", description = "Successful operation"),
+            @ApiResponse(responseCode = "404", description = "No vendor details found")
+            }
+        )
     @PreAuthorize("hasRole('ADMIN')")
     public String updateVendorDetails(@RequestBody Vendor vendor)
     {
@@ -79,6 +103,14 @@ public class VendorController
     }
 
     @DeleteMapping("/{vendorId}")
+    @Operation(
+        summary = "Delete Vendor",
+        description = "Delete a vendor by the particular vendor ID",
+        responses = {
+            @ApiResponse(responseCode = "200", description = "Successful operation"),
+            @ApiResponse(responseCode = "404", description = "No vendor details found")
+            }
+        )
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> deleteVendorDetails(@PathVariable("vendorId") String vendorId)
     {

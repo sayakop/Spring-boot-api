@@ -50,7 +50,7 @@ public class BookController {
     //Get All Books from DB
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     public List<Book> getAllBooks()  
     {
         return bookService.getAllBooks();
