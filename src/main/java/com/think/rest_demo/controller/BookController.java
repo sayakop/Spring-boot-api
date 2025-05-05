@@ -58,7 +58,7 @@ public class BookController {
 
     // Get a Particular Book from DB
     @GetMapping("{bookid}")
-     @Operation(
+    @Operation(
     summary = "Get Book by ID",
     description = "Provide a book ID to retrieve the book details",
     responses = {
@@ -76,6 +76,14 @@ public class BookController {
     }
  
     @PostMapping("")
+    @Operation(
+    summary = "Add a Book",
+    description = "This method will add a book to the database",
+    responses = {
+        @ApiResponse(responseCode = "200", description = "Successful Operation"),
+        @ApiResponse(responseCode = "404", description = "Book not added")
+    }
+)
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> addBooks(@RequestBody Book book) {
         bookService.addBooks(book);
@@ -83,6 +91,14 @@ public class BookController {
     }
 
     @PutMapping("/{bookid}")
+    @Operation(
+    summary = "Update Book by ID",
+    description = "Provide a book ID to update the book details",
+    responses = {
+        @ApiResponse(responseCode = "200", description = "Successful operation"),
+        @ApiResponse(responseCode = "404", description = "Book not found")
+    }
+)
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> updateBooks(@PathVariable Long bookid,@RequestBody Book book)
     {
@@ -91,6 +107,14 @@ public class BookController {
     }
 
     @PutMapping("/{bookid}/assignvendor")
+    @Operation(
+    summary = "Update Book by BookID and Vendor ID",
+    description = "Update a BookID with the Following Vendor Id",
+    responses = {
+        @ApiResponse(responseCode = "200", description = "Successful operation"),
+        @ApiResponse(responseCode = "404", description = "Book not found")
+    }
+)
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> assignVendorBook(
         @PathVariable Long bookid,@RequestParam String vendorId) {
@@ -113,6 +137,14 @@ public class BookController {
     }
 
     @DeleteMapping("/{bookid}")
+    @Operation(
+    summary = "Delete Book by ID",
+    description = "Delete a book based on a Book ID",
+    responses = {
+        @ApiResponse(responseCode = "200", description = "Successful operation"),
+        @ApiResponse(responseCode = "404", description = "Book not found")
+    }
+)
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String>  deleteBook(@PathVariable Long bookid)
     {
